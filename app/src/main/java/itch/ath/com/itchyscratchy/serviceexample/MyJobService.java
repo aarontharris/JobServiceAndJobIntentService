@@ -7,8 +7,7 @@ import android.support.annotation.RequiresApi;
 
 import itch.ath.com.itchyscratchy.R;
 import itch.ath.com.itchyscratchy.commonstuff.JobParams;
-
-import static itch.ath.com.itchyscratchy.serviceexample.MyServiceDelegate16.MyServiceParams;
+import itch.ath.com.itchyscratchy.serviceexample.MyService.MyServiceParams;
 
 /**
  * The only purpose of MyTraditionalService is to intercept service calls for SDK >= 21 and send
