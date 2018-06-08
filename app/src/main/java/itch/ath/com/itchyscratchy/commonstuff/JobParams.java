@@ -407,40 +407,6 @@ public class JobParams {
         }
     }
 
-    public static void test() {
-        long start = System.currentTimeMillis();
-        JobParams p = new JobParams();
-        p.putBoolean( "boolean", true );
-        p.putBooleanArray( "boolean_array", new boolean[]{ true, false, true } );
-        p.putInt( "int", 1 );
-        p.putIntArray( "int_array", new int[]{ 1, 0, 1 } );
-        p.putLong( "long", 1L );
-        p.putLongArray( "long_array", new long[]{ 1L, 0L, 1L } );
-        p.putDouble( "double", 1.0 );
-        p.putDoubleArray( "double_array", new double[]{ 1.0, 0.0, 1.0 } );
-        p.putString( "string", "hello" );
-        p.putStringArray( "string_array", new String[]{ "HELLO", "hello", "HELLO" } );
-        p.putBundle( "bundle", deepCopy( p ) );
-
-        JobParams copy = deepCopy( p ); // now with the nested bundle
-        Bundle b = JobParams.toBundle( copy );
-        copy = JobParams.fromBundle( b );
-
-        if ( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP ) {
-            PersistableBundle pb = null;
-            pb = JobParams.toPersistableBundle( copy );
-            copy = JobParams.fromPersistableBundle( pb );
-        }
-
-        Intent intent = new Intent();
-        JobParams.toIntent( copy, "thekey", intent );
-        copy = JobParams.fromIntent( "thekey", intent );
-        long end = System.currentTimeMillis();
-        Log.d( "ATH", "TIME: " + ( end - start ) ); // About 5ms for all this conversion
-
-        Log.d( "ATH", JobParams.describe( copy ) );
-    }
-
     public void putBoolean( String key, boolean value ) {
         values.putBoolean( key, value );
         types.putInt( key, ParamType.BOOLEAN.toId() );
@@ -562,5 +528,36 @@ public class JobParams {
             return new JobParams( b );
         }
         return null;
+    }
+
+    static void test() {
+        JobParams p = new JobParams();
+        p.putBoolean( "boolean", true );
+        p.putBooleanArray( "boolean_array", new boolean[]{ true, false, true } );
+        p.putInt( "int", 1 );
+        p.putIntArray( "int_array", new int[]{ 1, 0, 1 } );
+        p.putLong( "long", 1L );
+        p.putLongArray( "long_array", new long[]{ 1L, 0L, 1L } );
+        p.putDouble( "double", 1.0 );
+        p.putDoubleArray( "double_array", new double[]{ 1.0, 0.0, 1.0 } );
+        p.putString( "string", "hello" );
+        p.putStringArray( "string_array", new String[]{ "HELLO", "hello", "HELLO" } );
+        p.putBundle( "bundle", deepCopy( p ) );
+
+        JobParams copy = deepCopy( p ); // now with the nested bundle
+        Bundle b = JobParams.toBundle( copy );
+        copy = JobParams.fromBundle( b );
+
+        if ( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP ) {
+            PersistableBundle pb = null;
+            pb = JobParams.toPersistableBundle( copy );
+            copy = JobParams.fromPersistableBundle( pb );
+        }
+
+        Intent intent = new Intent();
+        JobParams.toIntent( copy, "thekey", intent );
+        copy = JobParams.fromIntent( "thekey", intent );
+
+        Log.d( JobParams.class.getSimpleName(), JobParams.describe( copy ) );
     }
 }

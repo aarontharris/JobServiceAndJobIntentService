@@ -2,12 +2,11 @@ package itch.ath.com.itchyscratchy.serviceexample;
 
 import android.content.Context;
 
+import itch.ath.com.itchyscratchy.commonstuff.ApiHelper;
 import itch.ath.com.itchyscratchy.commonstuff.JobParams;
 import itch.ath.com.itchyscratchy.commonstuff.JobParamsVO;
 import itch.ath.com.itchyscratchy.commonstuff.TargetApiImpl;
 import itch.ath.com.itchyscratchy.commonstuff.TargetApiImpls;
-
-import static itch.ath.com.itchyscratchy.commonstuff.ApiHelper.bestInstance;
 
 /**
  * This is unfortunately much more complex than it should be, but also the best pattern for
@@ -64,12 +63,12 @@ public class MyService {
      * locally cache this.
      */
     public static MyService get() {
-        return bestInstance( MyService.class );
+        return ApiHelper.bestInstance( MyService.class );
     }
 
-  /*
-   * FYI - Beyond this point, this code is boilerplate and can be placed into a base class
-   */
+    /*
+     * FYI - Beyond this point, this code is boilerplate and can be placed into a base class
+     */
 
     /**
      * Warning -- don't do anything here other than start your service appropriate to the SDK you've
