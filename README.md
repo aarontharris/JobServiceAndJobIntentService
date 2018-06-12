@@ -21,4 +21,4 @@ My JobIntentService -- no delegate needed since JobIntentService is backwards co
 
 # [JobParams.Java](https://github.com/aarontharris/JobServiceAndJobIntentService/blob/master/app/src/main/java/itch/ath/com/itchyscratchy/commonstuff/JobParams.java) and [JobParamsVO.java](https://github.com/aarontharris/JobServiceAndJobIntentService/blob/master/app/src/main/java/itch/ath/com/itchyscratchy/commonstuff/JobParamsVO.java)
 
-An API agnostic Bundle that can convert to and from the old Bundle and new PersistableBundle.
+An API agnostic Bundle that can convert to and from the old Bundle and new PersistableBundle. The example services listed above cover how to use these.
