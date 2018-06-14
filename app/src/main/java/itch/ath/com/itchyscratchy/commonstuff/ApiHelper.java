@@ -25,7 +25,7 @@ public class ApiHelper {
         int bestSdk = 0;
         if ( impls != null ) {
             for ( TargetApiImpl impl : impls.value() ) {
-                if ( Build.VERSION.SDK_INT <= impl.sdk() && Build.VERSION.SDK_INT > bestSdk ) {
+                if ( Build.VERSION.SDK_INT >= impl.sdk() && Build.VERSION.SDK_INT > bestSdk ) {
                     bestSdk = impl.sdk();
                     bestClass = impl.impl();
                 }
